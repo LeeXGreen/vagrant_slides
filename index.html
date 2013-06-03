@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Presentation</title>
+
+        <meta name="description" content="">
+        <meta name="author" content="Lee Green">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+
+                <section>
+                    <section>
+                    <h1>Development</h1><h1>Environments</h1>
+
+                    <br/>
+                    <br/>
+                    <p>Lee Green<br/>June 2013<p>
+                    </section>
+
+                    <section>
+                        <h1>Overview</h1>
+                        <br/>
+                        <ul>
+                            <li><h3>Problems</h3></li>
+                            <li><h3>Partial Solutions</h3></li>
+                            <li><h3>Vagrant</h3></li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Problems</h1>
+                        <!--
+                        -->
+                        <ul>
+                            <li>Dev machine</li>
+                            <li>Dependencies</li>
+                            <li>Spin up time / effort</li>
+                            <li>Reproducibility</li>
+                            <li>Dev / Prod Parity</li>
+                        </ul>
+                        <!--
+                        -->
+                    </section>
+
+                    <section>
+                        <h1>Dev Machine</h1>
+                        <p>Different projects:</p>
+                        <ul>
+                            <li>Nginx + Redis + Ruby + Rails</li>
+                            <li>Apache + MySQL + PHP + Zend</li>
+                            <li>Tomcat + PostgreSQL + Java + Spring</li>
+                        </ul>
+
+                        <div class="fragment">
+                            <br/>
+                            <h2>SIGH</h2>
+                            <p>Do I really have to install all this crap on my laptop?</p>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h1>Dependencies</h1>
+                        <br/>
+                        <p>One project - different releases:</p>
+                        <br/>
+                        <ul>
+                            <li>PHP 5.1 + Apache 2.0</li>
+                            <li>PHP 5.3 + Apache 2.2</li>
+                        </ul>
+                        <br/>
+                        <br/>
+                        <p>How to specify and isolate?</p>
+                    </section>
+
+                    <section>
+                        <h1>Spin Up</h1>
+                        <br/>
+                        <ul>
+                            <li>New developers</li>
+                            <li>Developers new to a project</li>
+                            <li>Developers who switch between projects</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h1>Reproducibility</h1>
+                        <br/>
+                        <ul>
+                            <li>How to share the finished result?</li>
+                            <li>How to consistently apply changes?</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h1>Dev / Prod Parity</h1>
+                        <div class="fragment">
+                            <h2>a.k.a.</h2>
+                            <h3>"it works on my machine!"</h3>
+                        </div>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Partial Solutions</h1>
+                        <p>Presented in decreasing order of FAIL</p>
+                    </section>
+
+                    <section>
+                        <h2>Work on servers only</h2>
+                        <ul>
+                            <li>Requires constant connection</li>
+                            <li>Adds latency / network restrictions</li>
+                            <li>Heavy</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Virtual Machines</h2>
+                        <p class="fragment" ><b>Flavors:</b></p>
+                        <ul>
+                            <li class="fragment">VM on USB stick</li>
+                            <li class="fragment">Shell script to customize VM from base OS</li>
+                            <li class="fragment">Provision VM with Puppet, etc.</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Vagrant</h1>
+                    </section>
+
+                    <section>
+                        <h1>What is it?</h1>
+                        <blockquote cite="vagrantup.com">
+                            &ldquo;Vagrant provides easy to configure, reproducible, and portable work environments built on top of industry-standard technology and controlled by a single consistent workflow to help maximize the productivity and flexibility of you and your team.&rdquo;
+                        </blockquote>
+                    </section>
+
+                    <section>
+                        <h1>Seriously</h1>
+                        <p>
+                        Vagrant makes all these easy:
+                        </p>
+                        <ul>
+                            <li>creation</li>
+                            <li>provisioning</li>
+                            <li>configuration</li>
+                            <li>sharing</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Base box</h2>
+                        <pre><code>
+$ vagrant init precise32 http://files.vagrantup.com/precise32.box
+$ vagrant up
+                        </code></pre>
+                        <h2>Git repo</h2>
+                        <pre><code>
+$ git clone git://server/my_vagrant_repo
+$ cd my_vagrant_repo
+$ vagrant up
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h1>VM Servers</h1>
+                        <br/>
+                        <ul>
+                            <li>VirtualBox (default)</li>
+                            <li>VMWare ($$)</li>
+                            <li>Amazon</li>
+                            <li>Rackspace</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h1>Provisioning</h1>
+                        <br/>
+                        <ul>
+                            <li>Shell script</li>
+                            <li>Ansible</li>
+                            <li>Puppet</li>
+                            <li>Puppet Server</li>
+                            <li>Chef Solo</li>
+                            <li>Chef Server</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Other Awesome Stuff</h2>
+                        <br/>
+                        <ul>
+                            <li>Networking config</li>
+                            <li>Synced folders</li>
+                            <li>Multi-VM environments</li>
+                        </ul>
+                    </section>
+                </section>
+
+				<section>
+                    <section>
+                        <h2>Vagrant machines are:</h2>
+                        <ul>
+                            <li>Portable</li>
+                            <li>Self-contained</li>
+                            <li>Lightweight</li>
+                            <li>Reproducible</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h1>Portable</h1>
+                        <ul>
+                            <li>Runs on Windows / OS X / Linux</li>
+                            <li>Defaults to free VirtualBox software</li>
+                            <li>Self-contained installer</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h1>Self-contained</h1>
+                        <ul>
+                            <li>Only contains what you want it to contain</li>
+                            <li>Does not require developer tools on host</li>
+                            <li>Does not install any libraries / servers on host</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h1>Lightweight</h1>
+                        <ul>
+                            <li>Reduces virtual machine state to code</li>
+                            <li>Maps a complex domain into one we have tools for</li>
+                            <li>Machines can be packaged into shareable binaries</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h1>Reproducible</h1>
+                        <ul>
+                            <li>Starts with known (shareable) base image</li>
+                            <li>Applies specified configuration and customization</li>
+                            <li>Eliminates "works on my machine" problems</li>
+                            <li>New employees / new projects spin up quickly</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+				    <section>
+					    <h2>How can we use it?</h2>
+                    </section>
+
+                    <section>
+                        <h1>DEV</h1>
+                        <ul>
+                            <li>Daily development:
+                                <ul>
+                                    <li>construct "sandbox" environment</li>
+                                    <li>independent of servers</li>
+                                    <li>run code directly from your dev tree</li>
+                                </ul>
+                            </li>
+                            <li>Pre-release:
+                                <ul>
+                                    <li>switch to production-like environment</li>
+                                    <li>still running in a VM</li>
+                                    <li>Run code from packaged releases</li>
+                                </ul>
+                            </li>
+                            <li>In either case:
+                                <ul>
+                                    <li>Destroy environment and rebuild at any time</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h1>OPS</h1>
+                        <ul>
+                            <li>Develop and test provisioning scripts</li>
+                            <li>Test installations / release notes on disposable servers</li>
+                        </ul>
+                    </section>
+                </section>
+
+				<section>
+                    <h1>THE END</h1>
+                    <p>Presented using reveal.js.</p>
+                    <p>Isn't it freaking awesome?</p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: false,
+				history: true,
+				center: true,
+
+				theme: 'moon', //Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
