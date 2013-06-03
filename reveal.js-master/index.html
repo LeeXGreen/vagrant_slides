@@ -93,7 +93,7 @@
                     <section>
                         <h1>Dependencies</h1>
                         <br/>
-                        <p>One project -- different releases:</p>
+                        <p>One project - different releases:</p>
                         <br/>
                         <ul>
                             <li>PHP 5.1 + Apache 2.0</li>
@@ -149,11 +149,11 @@
 
                     <section>
                         <h2>Virtual Machines</h2>
-                        <p><b>Flavors:</b></p>
+                        <p class="fragment" ><b>Flavors:</b></p>
                         <ul>
-                            <li>VM on USB stick</li>
-                            <li>Shell script to customize VM from base OS</li>
-                            <li>Provision VM with Puppet, etc.</li>
+                            <li class="fragment">VM on USB stick</li>
+                            <li class="fragment">Shell script to customize VM from base OS</li>
+                            <li class="fragment">Provision VM with Puppet, etc.</li>
                         </ul>
                     </section>
                 </section>
@@ -291,13 +291,15 @@ $ vagrant up
                         <ul>
                             <li>Daily development:
                                 <ul>
-                                    <li>construct "sandbox" environment independent of servers</li>
+                                    <li>construct "sandbox" environment</li>
+                                    <li>independent of servers</li>
                                     <li>run code directly from your dev tree</li>
                                 </ul>
                             </li>
                             <li>Pre-release:
                                 <ul>
-                                    <li>switch to production-like environment, still running in a VM</li>
+                                    <li>switch to production-like environment</li>
+                                    <li>still running in a VM</li>
                                     <li>Run code from packaged releases</li>
                                 </ul>
                             </li>
@@ -341,7 +343,7 @@ $ vagrant up
 				history: true,
 				center: true,
 
-				theme: 'night', //Reveal.getQueryHash().theme, // available themes are in /css/theme
+				theme: 'moon', //Reveal.getQueryHash().theme, // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
 
 				// Optional libraries used to extend on reveal.js
